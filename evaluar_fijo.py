@@ -32,7 +32,8 @@ def evaluar_escenario_fijo(nombre_escenario, archivo_rutas, duracion_pasos=3600)
         "-r", ruta_rutas,
         "--no-step-log", "true",
         "--waiting-time-memory", str(duracion_pasos),
-        "--time-to-teleport", "-1"
+        "--time-to-teleport", "-1",
+        "--seed", "42"
     ]
     
     traci.start(cmd)

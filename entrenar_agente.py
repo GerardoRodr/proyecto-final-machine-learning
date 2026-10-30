@@ -1,5 +1,6 @@
 import os
 import sys
+import random
 import pandas as pd
 import traci
 from qlearning_agent import QLearningAgent
@@ -54,7 +55,8 @@ def calcular_recompensa(alpha=0.5, beta=1.0, gamma=2.0):
     recompensa = -(alpha * (w_t / 10.0) + beta * q_t + gamma * p_t)
     return recompensa
 
-def entrenar(num_episodios=60, duracion_episodio=1200):
+def entrenar(num_episodios=60, duracion_episodio=1200, semilla=42):
+    random.seed(semilla)
     agent = QLearningAgent(alpha_lr=0.1, gamma_df=0.95, epsilon=1.0, epsilon_min=0.01, decay=0.95)
     historial = []
     
@@ -68,7 +70,8 @@ def entrenar(num_episodios=60, duracion_episodio=1200):
             "-r", archivo_rutas,
             "--no-step-log", "true",
             "--waiting-time-memory", str(duracion_episodio),
-            "--time-to-teleport", "-1"
+            "--time-to-teleport", "-1",
+            "--seed", str(semilla)
         ]
         
         traci.start(cmd)

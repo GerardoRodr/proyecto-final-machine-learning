@@ -1,5 +1,6 @@
 import os
 import sys
+import random
 import pandas as pd
 import traci
 from qlearning_agent import QLearningAgent
@@ -43,7 +44,8 @@ def evaluar_escenario_agente(agent, nombre_escenario, archivo_rutas, duracion_pa
         "-r", ruta_rutas,
         "--no-step-log", "true",
         "--waiting-time-memory", str(duracion_pasos),
-        "--time-to-teleport", "-1"
+        "--time-to-teleport", "-1",
+        "--seed", "42"
     ]
     
     traci.start(cmd)
@@ -142,6 +144,7 @@ def evaluar_escenario_agente(agent, nombre_escenario, archivo_rutas, duracion_pa
     }
 
 def main():
+    random.seed(42)
     ruta_modelo = os.path.join(BASE_DIR, "q_table.pkl")
     if not os.path.exists(ruta_modelo):
         sys.exit(f"Error: No se encontro el modelo {ruta_modelo}. Ejecuta primero entrenar_agente.py.")

@@ -1,0 +1,5 @@
+traci==1.28.0
+sumolib==1.28.0
+pandas>=2.2.0
+matplotlib>=3.8.0
+numpy>=1.26.0

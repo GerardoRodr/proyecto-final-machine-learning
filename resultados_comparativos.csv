@@ -1,5 +1,5 @@
 Escenario,Espera_Fijo_s,Espera_QLearning_s,Reduccion_Espera_%,Cumple_Meta_Espera_15%,Cola_Fijo_veh,Cola_QLearning_veh,Reduccion_Cola_%,Cumple_Meta_Cola_10%,Atendidos_Fijo,Atendidos_QLearning,Cola_Max_Fijo,Cola_Max_QLearning,Infracciones_Seguridad
-Baja,10.28,8.25,19.75,True,1.58,1.27,19.62,True,536,535,8,8,0
-Media,10.92,4.55,58.33,True,4.39,1.84,58.09,True,1408,1406,18,7,0
-Alta,12.38,3.54,71.41,True,9.92,2.84,71.37,True,2830,2829,28,10,0
-Desequilibrada,12.4,3.4,72.58,True,6.57,1.81,72.45,True,1871,1876,28,12,0
+Baja,10.44,4.24,59.39,True,1.61,0.66,59.01,True,536,536,9,4,0
+Media,10.87,4.01,63.11,True,4.37,1.61,63.16,True,1408,1408,15,9,0
+Alta,12.26,3.58,70.8,True,9.83,2.88,70.7,True,2828,2831,27,12,0
+Desequilibrada,12.61,3.43,72.8,True,6.68,1.82,72.75,True,1871,1879,29,16,0

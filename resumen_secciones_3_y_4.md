@@ -76,42 +76,42 @@ $$Q(s_t, a_t) \leftarrow Q(s_t, a_t) + \alpha_{lr} \left[ r_t + \gamma_{df} \max
 
 | Escenario de Demanda | Tiempo Espera Fijo (s/veh) | Tiempo Espera Q-Learning (s/veh) | Reduccion Espera (%) | Meta Espera ($\ge 15\%$) | Longitud Cola Fijo (veh) | Longitud Cola Q-Learning (veh) | Reduccion Cola (%) | Meta Cola ($\ge 10\%$) |
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| **Baja** | 10.28 | 8.25 | **-19.75 %** | Cumplido | 1.58 | 1.27 | **-19.62 %** | Cumplido |
-| **Media** | 10.92 | 4.55 | **-58.33 %** | Cumplido | 4.39 | 1.84 | **-58.09 %** | Cumplido |
-| **Alta** | 12.38 | 3.54 | **-71.41 %** | Cumplido | 9.92 | 2.84 | **-71.37 %** | Cumplido |
-| **Desequilibrada** | 12.40 | 3.40 | **-72.58 %** | Cumplido | 6.57 | 1.81 | **-72.45 %** | Cumplido |
+| **Baja** | 10.44 | 4.24 | **-59.39 %** | Cumplido | 1.61 | 0.66 | **-59.01 %** | Cumplido |
+| **Media** | 10.87 | 4.01 | **-63.11 %** | Cumplido | 4.37 | 1.61 | **-63.16 %** | Cumplido |
+| **Alta** | 12.26 | 3.58 | **-70.80 %** | Cumplido | 9.83 | 2.88 | **-70.70 %** | Cumplido |
+| **Desequilibrada** | 12.61 | 3.43 | **-72.80 %** | Cumplido | 6.68 | 1.82 | **-72.75 %** | Cumplido |
 
 #### Tabla 4.2: Rendimiento Operativo, Capacidad y Verificacion de Seguridad
 
 | Escenario | Vehiculos Ingresados | Vehiculos Atendidos (Fijo) | Vehiculos Atendidos (Q-Learning) | Cola Maxima (Fijo) | Cola Maxima (Q-Learning) | Reduccion Cola Maxima | Infracciones de Seguridad |
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| **Baja** | 547 | 536 | 535 | 8 veh | 8 veh | 0 % | **0** |
-| **Media** | 1430 | 1408 | 1406 | 18 veh | 7 veh | **-61.1 %** | **0** |
-| **Alta** | 2879 | 2830 | 2829 | 28 veh | 10 veh | **-64.3 %** | **0** |
-| **Desequilibrada** | 1902 | 1871 | 1876 | 28 veh | 12 veh | **-57.1 %** | **0** |
+| **Baja** | 547 | 536 | 536 | 9 veh | 4 veh | **-55.6 %** | **0** |
+| **Media** | 1430 | 1408 | 1408 | 15 veh | 9 veh | **-40.0 %** | **0** |
+| **Alta** | 2879 | 2828 | 2831 | 27 veh | 12 veh | **-55.6 %** | **0** |
+| **Desequilibrada** | 1902 | 1871 | 1879 | 29 veh | 16 veh | **-44.8 %** | **0** |
 
 ---
 
 ### 4.2 Analisis Detallado por Objetivos
 
 #### A. Analisis de Reduccion en Tiempos de Espera (OE1)
-El agente Q-learning supero con holgura el umbral meta del 15 % en los 4 escenarios evaluados:
-- En demanda **baja**, la reduccion fue del **19.75 %** (de 10.28 s a 8.25 s).
-- En demanda **media**, alcanzo una reduccion del **58.33 %** (de 10.92 s a 4.55 s).
-- En demanda **alta**, la reduccion alcanzo el **71.41 %** (de 12.38 s a 3.54 s).
-- En el escenario **desequilibrado**, la optimizacion registro su mayor impacto con una reduccion del **72.58 %** (de 12.40 s a 3.40 s).
+El agente Q-learning supero ampliamente el umbral meta del 15 % en los 4 escenarios evaluados:
+- En demanda **baja**, la reduccion fue del **59.39 %** (de 10.44 s a 4.24 s).
+- En demanda **media**, alcanzo una reduccion del **63.11 %** (de 10.87 s a 4.01 s).
+- En demanda **alta**, la reduccion alcanzo el **70.80 %** (de 12.26 s a 3.58 s).
+- En el escenario **desequilibrado**, la optimizacion registro su mayor impacto con una reduccion del **72.80 %** (de 12.61 s a 3.43 s).
 
-*Interpretacion tecnica:* El semaforo de tiempos fijos asigna sistematicamente 42 segundos de verde a cada eje, independientemente de si hay vehiculos esperando. En contraste, el agente Q-learning detecta de inmediato cuando un pelotón de vehiculos ha terminado de cruzar (`q_fase == 'BAJA'`) y conmuta oportunamente el derecho de paso al eje donde la cola comienza a formarse, eliminando tiempos muertos de verde desperdiciado.
+*Interpretacion tecnica:* El semaforo de tiempos fijos asigna sistematicamente 42 segundos de verde a cada eje, independientemente de si hay vehiculos esperando. En contraste, el agente Q-learning detecta de inmediato cuando un peloton de vehiculos ha terminado de cruzar (`q_fase == 'BAJA'`) y conmuta oportunamente el derecho de paso al eje donde la cola comienza a formarse, eliminando tiempos muertos de verde desperdiciado.
 
 #### B. Analisis de Longitudes de Cola y Colas Maximas (OE2)
 El criterio de exito requeria reducir la longitud media de cola en al menos un 10 %:
-- El agente logro una disminucion del **19.62 %** en demanda baja, **58.09 %** en media, **71.37 %** en alta y **72.45 %** en desequilibrada.
-- Respecto a la **cola maxima instantanea**, el controlador fijo alcanzo picos de 28 vehiculos detenidos en demanda alta y desequilibrada, mientras que el agente Q-learning contuvo la cola maxima en 10 vehiculos (reduccion del 64.3 %) y 12 vehiculos (reduccion del 57.1 %) respectivamente.
+- El agente logro una disminucion del **59.01 %** en demanda baja, **63.16 %** en media, **70.70 %** en alta y **72.75 %** en desequilibrada.
+- Respecto a la **cola maxima instantanea**, el controlador fijo alcanzo picos de hasta 27 vehiculos en alta y 29 vehiculos en desequilibrada, mientras que el agente Q-learning contuvo la cola maxima en 12 vehiculos (reduccion del 55.6 %) y 16 vehiculos (reduccion del 44.8 %) respectivamente. En baja demanda la redujo de 9 a 4 vehiculos (-55.6 %) y en media de 15 a 9 vehiculos (-40.0 %).
 
 *Interpretacion tecnica:* Al modular la duracion del verde dinamicamente entre 10 s y 60 s segun el estado discreto, el agente previene la acumulacion de vehiculos en los accesos de alta carga (Norte-Sur), impidiendo que las colas se propaguen aguas arriba hacia los limites de la red.
 
 #### C. Rendimiento y Seguridad Vial (OE3)
-- **Tasa de atencion (throughput):** El numero de vehiculos atendidos se mantuvo en niveles equivalentes en baja (535 vs 536), media (1406 vs 1408) y alta (2829 vs 2830), e incluso **se incremento en el escenario desequilibrado** pasando de 1871 a 1876 vehiculos evacuados.
+- **Tasa de atencion (throughput):** El numero de vehiculos atendidos se mantuvo en niveles equivalentes o superiores: 536 vs 536 en baja, 1408 vs 1408 en media, **2831 vs 2828 (+3 vehiculos) en alta**, y **1879 vs 1871 (+8 vehiculos) en el escenario desequilibrado**.
 - **Seguridad operativa estricta:** En los 4 escenarios de evaluacion (14,400 segundos totales de operacion en bucle cerrado) se registraron **0 infracciones de seguridad**:
   - Ninguna fase verde duro menos de 10 segundos continuos.
   - Ninguna fase verde supero los 60 segundos de permanencia forzosa.
