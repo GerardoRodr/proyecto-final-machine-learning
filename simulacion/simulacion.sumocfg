@@ -1,0 +1,10 @@
+<configuration>
+    <input>
+        <net-file value="interseccion.net.xml"/>
+        <route-files value="rutas_desequilibrada.rou.xml"/>
+    </input>
+    <time>
+        <begin value="0"/>
+        <end value="3600"/>
+    </time>
+</configuration>
