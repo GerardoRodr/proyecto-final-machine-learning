@@ -1,0 +1,5 @@
+Escenario,Tiempo_Medio_Espera_s,Longitud_Media_Cola_veh,Vehiculos_Ingresados,Vehiculos_Atendidos,Cola_Maxima_veh
+Baja,10.28,1.58,547,536,8
+Media,10.92,4.39,1430,1408,18
+Alta,12.38,9.92,2879,2830,28
+Desequilibrada,12.4,6.57,1902,1871,28
